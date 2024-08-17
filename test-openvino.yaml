@@ -33,14 +33,14 @@ kind: Service
 metadata:
   name: my-python-app-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
-  - port: 2222
     targetPort: 22
+    nodePort: 32222  # Choose a port in the range 30000-32767
     protocol: TCP
     name: ssh
-  - port: 5000
     targetPort: 5000
+    nodePort: 30050  # Choose a port in the range 30000-32767
     protocol: TCP
     name: app-port
   selector:
