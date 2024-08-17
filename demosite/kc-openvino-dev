@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: openvino
+  name: openvino
+spec:
+  containers:
+  - args:
+    - bash
+    - -c
+    - source /root/openvino_env/bin/activate && cd /root/openvino_notebooks && jupyter lab notebooks --allow-root --ip=0.0.0.0
+    volumeMounts:
+    - mountPath: /dev
+      name: devdir
+    - mountPath: /sys
+      name: sysdir
+    image: kangwarn/ubuntu-openvino-dev:v1
+    name: openvino
+    securityContext:
+       privileged: true
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  hostNetwork: true
+  volumes:
+  - name: sysdir
+    hostPath:
+      path: /sys
+      type: Directory
+  - name: devdir
+    hostPath:
+      path: /dev
+      type: Directory
+status: {}
