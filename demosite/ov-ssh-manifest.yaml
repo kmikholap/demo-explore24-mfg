@@ -27,7 +27,19 @@ spec:
         volumeMounts:
         - name: dri
           mountPath: /dev/dri
+        - name: devdir
+          mountPath: /dev
+        - name: sysdir
+          mountPath: /sys
       volumes:
+      - name: sysdir
+        hostPath:
+          path: /sys
+          type: Directory
+      - name: devdir
+        hostPath:
+          path: /dev
+          type: Directory
       - name: dri
         hostPath:
           path: /dev/dri
