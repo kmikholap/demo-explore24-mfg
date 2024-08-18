@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: openvino-runtime-ssh-container
-        image: kmikholap/u22-openvino-ssh:latest
+        image: kmikholap/u22-openvino-ssh-v2:latest
         securityContext:
           capabilities:
             add: ["SYS_ADMIN"]  # Required for starting SSH service
