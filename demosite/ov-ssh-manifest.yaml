@@ -25,7 +25,8 @@ spec:
       - name: dri
         hostPath:
           path: /dev/dri
-
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: openvino-runtime-ssh-service
