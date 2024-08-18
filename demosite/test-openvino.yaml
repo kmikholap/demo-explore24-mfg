@@ -24,6 +24,7 @@ spec:
         limits:
             intel.com/gpu: 1
         securityContext:
+          privileged: true
           capabilities:
             add: ["SYS_ADMIN"]  # Required for starting SSH service
         volumeMounts:
