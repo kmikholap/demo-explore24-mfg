@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openvino-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openvino-runtime-ssh
+  template:
+    metadata:
+      labels:
+        app: openvino-runtime-ssh
+    spec:
+      containers:
+      - name: openvino-runtime-ssh-container
+        image: kmikholap/u22-openvino-ssh:latest
+        securityContext:
+          capabilities:
+            add: ["SYS_ADMIN"]  # Required for starting SSH service
+        volumeMounts:
+        - name: dri
+          mountPath: /dev/dri
+      volumes:
+      - name: dri
+        hostPath:
+          path: /dev/dri
+apiVersion: v1
+kind: Service
+metadata:
+  name: openvino-runtime-ssh-service
+spec:
+  type: NodePort
+  ports:
+  - port: 2222
+    targetPort: 22
+    nodePort: 30222  # Choose a port in the range 30000-32767
+    protocol: TCP
+    name: ssh
+  selector:
+    app: openvino-runtime-ssh
