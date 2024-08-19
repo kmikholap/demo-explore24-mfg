@@ -62,6 +62,6 @@ spec:
     targetPort: 80
     nodePort: 30500  # Choose a port in the range 30000-32767
     protocol: TCP
-    name: ssh
+    name: app
   selector:
     app: openvino-runtime-ssh
