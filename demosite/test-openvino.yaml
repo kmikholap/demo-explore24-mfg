@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: openvino-runtime-ssh-container
-        image: kmikholap/u22-openvino-v6-no-ultra:v6
+        image: kmikholap/cv-mfg-demo:v1
         securityContext:
           privileged: true
           capabilities:
