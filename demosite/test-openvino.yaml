@@ -20,9 +20,7 @@ spec:
     spec:
       containers:
       - name: openvino-runtime-ssh-container
-        image: kmikholap/u-openvino-ssh-v3:latest
-        limits:
-            intel.com/gpu: 1
+        image: kmikholap/u22-openvino-v6-no-ultra:latest
         securityContext:
           privileged: true
           capabilities:
@@ -58,6 +56,11 @@ spec:
   - port: 2222
     targetPort: 22
     nodePort: 30222  # Choose a port in the range 30000-32767
+    protocol: TCP
+    name: ssh
+  - port: 5000
+    targetPort: 80
+    nodePort: 30500  # Choose a port in the range 30000-32767
     protocol: TCP
     name: ssh
   selector:
